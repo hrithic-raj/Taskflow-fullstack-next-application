@@ -1,12 +1,10 @@
-export const dynamic = "force-dynamic";
+import { connectDB } from "@/lib/mongodb";
+import User from "@/models/User";
+import { getUserId } from "@/lib/auth";
 
-export default async function Profile() {
-  const user = { name: "Hrithic", role: "User" };
-
-  return (
-    <div>
-      <h1>{user.name}</h1>
-      <p>{user.role}</p>
-    </div>
-  );
+export async function GET(req: Request) {
+  await connectDB();
+  const userId = getUserId(req);
+  const user = await User.findById(userId).select("-password");
+  return Response.json(user);
 }
