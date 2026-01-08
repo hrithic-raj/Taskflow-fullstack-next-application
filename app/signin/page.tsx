@@ -1,27 +1,27 @@
-// src/app/signup/page.tsx
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Signup() {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+export default function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  async function handleSubmit() {
-    await fetch("/api/auth/signup", {
+  async function login() {
+    const res = await fetch("/api/auth/signin", {
       method: "POST",
-      body: JSON.stringify(form),
+      body: JSON.stringify({ email, password }),
     });
-    router.push("/signin");
+    const data = await res.json();
+    localStorage.setItem("token", data.token);
+    router.push("/");
   }
 
   return (
     <>
-      <input placeholder="Name" onChange={e => setForm({ ...form, name: e.target.value })} />
-      <input placeholder="Email" onChange={e => setForm({ ...form, email: e.target.value })} />
-      <input placeholder="Password" type="password"
-        onChange={e => setForm({ ...form, password: e.target.value })} />
-      <button onClick={handleSubmit}>Signup</button>
+      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} />
+      <button onClick={login}>Login</button>
     </>
   );
 }
