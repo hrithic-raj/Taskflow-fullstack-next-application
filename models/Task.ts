@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const TaskSchema = new mongoose.Schema({
     title: String,
     description: String,
-    completed: Boolean,
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 },{
     timestamps: true,
 });
