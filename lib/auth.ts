@@ -1,8 +1,16 @@
+import { cookies } from "next/headers";
 import { verifyToken } from "./jwt";
 
-export function getUserId(req: Request) {
-  const token = req.headers.get("authorization")?.split(" ")[1];
-  if (!token) throw new Error("Unauthorized");
-  const decoded: any = verifyToken(token);
-  return decoded.id;
+export async function getUserId(): Promise<string | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token) return null;
+
+  try {
+    const decoded: any = verifyToken(token);
+    return decoded.id;
+  } catch {
+    return null;
+  }
 }

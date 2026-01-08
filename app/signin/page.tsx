@@ -8,12 +8,12 @@ export default function Signin() {
   const router = useRouter();
 
   async function login() {
-    const res = await fetch("/api/auth/signin", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
+    await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
     });
-    const data = await res.json();
-    localStorage.setItem("token", data.token);
+
     router.push("/");
   }
 
