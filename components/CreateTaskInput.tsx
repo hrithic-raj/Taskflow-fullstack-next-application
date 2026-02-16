@@ -145,7 +145,7 @@ export default function CreateTaskInput() {
         ref={containerRef}
         onClick={() => setOpen(true)}
         className={clsx(
-          "cursor-text rounded-xl border bg-neutral-900 p-4",
+          "cursor-text rounded-xl border bg-[#282828] p-4",
           "transition-all duration-300 ease-out",
           open
             ? "border-neutral-600 shadow-lg scale-[1.01]"

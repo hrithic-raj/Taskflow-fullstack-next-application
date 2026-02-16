@@ -71,7 +71,7 @@ export default function TaskModal({
       <div
         onClick={(e) => e.stopPropagation()}
         className="
-          bg-neutral-900
+          bg-[#1c1b1b]
           rounded-xl
           border border-neutral-700
           shadow-xl

@@ -19,7 +19,7 @@ export default function TaskGrid({ tasks }: { tasks: Task[] }) {
           <div
             key={task._id}
             onClick={() => setSelected(task)}
-            className="mb-4 break-inside-avoid rounded-xl border border-neutral-700 bg-neutral-900 p-4 cursor-pointer hover:shadow-md transition"
+            className="mb-4 break-inside-avoid rounded-xl border border-neutral-500 bg-[#282828] p-4 cursor-pointer hover:shadow-md transition"
           >
             <h3 className="text-white font-semibold mb-2">
               {task.title}
